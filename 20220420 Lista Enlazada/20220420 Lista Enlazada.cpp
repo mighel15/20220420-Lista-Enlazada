@@ -4,13 +4,13 @@ using namespace std;
 class Nodo {
 	//Atributos
 	int dato; //char, float, string, objeto
-	Nodo* enlace;//puntero...	
+	Nodo* enlace;//puntero..
 public:
 	//Constructor - inicializar los atributos
 	Nodo(int dato)
 	{
 		this->dato = dato;
-		this->enlace = NULL;//por que no apuntamos a ningun nodo
+		enlace = NULL;//por que no apuntamos a ningun nodo
 	}
 	//getter and setter
 	int getDato()
@@ -23,11 +23,19 @@ public:
 	}
 	Nodo* getEnlace()
 	{
-		return enlace;
+		return this->enlace;
 	}
 	void setEnlace(Nodo* enlace)
 	{
 		this->enlace = enlace;
+	}
+	void imprimir()
+	{
+		cout << "/-------------------\\" << endl;
+		cout << "|Dato: " << dato << endl;
+		cout << "|-------------------" << endl;
+		cout << "|Enlace: " << enlace << endl;
+		cout << "\\------------------/" << endl;
 	}
 };
 
@@ -40,35 +48,39 @@ public:
 	}
 	void Insertar(int dato)
 	{
-		Nodo temporal = Nodo(dato);
-
-		if (this->inicio == NULL)
+		Nodo* temp = new Nodo(dato);
+		if (inicio == NULL)//lista vacia
 		{
-			this->inicio = &temporal;
+			inicio = temp;
 		}
 		else
 		{
-			Nodo* recorrido;
-			recorrido = this->inicio;
+			Nodo* recorrido = this->inicio;
 			while (recorrido->getEnlace() != NULL)
 			{
 				recorrido = recorrido->getEnlace();
 			}
-			recorrido->setEnlace(&temporal);
+			recorrido->setEnlace(temp);
 		}
 	}
 	void Imprimir()
 	{
-		Nodo* recorrido;
-		recorrido = this->inicio;
-		while (recorrido->getEnlace() != NULL)
+		int i = 1;
+		Nodo* recorrido = inicio;
+		cout << "Lista enlazada****************************" << endl;
+		while (recorrido != NULL)
 		{
-			cout << recorrido->getDato() << endl;
+			cout << "---> Nodo " << i++ << endl;
+			recorrido->imprimir();
 			recorrido = recorrido->getEnlace();
 		}
-		cout << "****************************" << endl;
+		cout << "****************************" << endl << endl;
 	}
-
+	//Implementar la busqueda de un elemento en la lista enlazada
+	//Si la encuentra tiene que imprimir la dirección de memoría donde esta este elemento.
+	//------------------------------------
+	//Implementar la eliminación de un nodo final
+	//Implementar la eliminación de un nodo inicio
 };
 
 int main()
@@ -88,6 +100,8 @@ int main()
 	edades.Imprimir();
 	edades.Insertar(33);
 	edades.Imprimir();
+	int n;
+	cin >> n;
 
 }
 //int main()
