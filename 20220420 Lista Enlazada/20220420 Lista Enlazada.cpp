@@ -46,10 +46,10 @@ public:
 	{
 		this->inicio = NULL;
 	}
-	void Insertar(int dato)
+	void InsertarAlFinal(int dato)
 	{
 		Nodo* temp = new Nodo(dato);
-		if (inicio == NULL)//lista vacia
+		if (EstaVacia())//lista vacia
 		{
 			inicio = temp;
 		}
@@ -61,6 +61,20 @@ public:
 				recorrido = recorrido->getEnlace();
 			}
 			recorrido->setEnlace(temp);
+		}
+	}
+	void InsertarAlInicio(int dato)
+	{
+		Nodo* temp = new Nodo(dato);
+		if (EstaVacia())//lista vacia
+		{
+			inicio = temp;
+		}
+		else
+		{
+			Nodo* recorrido = this->inicio;
+			this->inicio = temp;
+			this->inicio->setEnlace(recorrido);
 		}
 	}
 	void Imprimir()
@@ -169,14 +183,24 @@ public:
 
 int main()
 {
+	/*Lista edades = Lista();
+	edades.InsertarAlFinal(20);
+	edades.InsertarAlFinal(30);
+	edades.InsertarAlFinal(21);
+	edades.InsertarAlFinal(21);
+	edades.InsertarAlFinal(24);
+	edades.InsertarAlFinal(22);
+	edades.InsertarAlFinal(33);
+	edades.ImprimirEnLinea();*/
+
 	Lista edades = Lista();
-	edades.Insertar(20);
-	edades.Insertar(30);
-	edades.Insertar(21);
-	edades.Insertar(21);
-	edades.Insertar(24);
-	edades.Insertar(22);
-	edades.Insertar(33);
+	edades.InsertarAlInicio(20);
+	edades.InsertarAlInicio(30);
+	edades.InsertarAlInicio(21);
+	edades.InsertarAlInicio(21);
+	edades.InsertarAlInicio(24);
+	edades.InsertarAlInicio(22);
+	edades.InsertarAlInicio(33);
 	edades.ImprimirEnLinea();
 
 	//edades.Buscar(15);
