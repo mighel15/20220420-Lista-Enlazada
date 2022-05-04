@@ -160,6 +160,43 @@ public:
         }
 
     }
+    void EliminarElementoEnPosicion(int posicion)
+    {
+        int contador = 0;
+        if (EstaVacia())
+        {
+            cout << "No hay elemento a eliminar" << endl;
+        }
+        else
+        {
+            if (posicion == 0)
+            {
+                EliminarElementoInicio();
+            }
+            else
+            {
+                Nodo* recorrido = inicio;
+
+                while (recorrido->getEnlace() != NULL)
+                {
+                    if (contador == posicion - 1)
+                    {
+                        recorrido->setEnlace(recorrido->getEnlace()->getEnlace());
+                        break;
+                    }
+                    else
+                    {
+                        contador++;
+                        recorrido = recorrido->getEnlace();
+                    }
+
+                }
+            }
+
+
+        }
+    }
+
     void EliminarElementoInicio()
     {
         if (EstaVacia())
@@ -194,11 +231,19 @@ void MostrarMenu()
     cout << "5.- Eliminar un elemento inicial" << endl;
     cout << "6.- Eliminar un elemento final" << endl;
     cout << "7.- Vaciar la lista" << endl;
+    cout << "8.- Eliminar un elemento en la posición" << endl;
     cout << "0.- Salir" << endl;
 }
 int main()
 {
     Lista edades = Lista();
+    edades.InsertarAlFinal(20);
+    edades.InsertarAlFinal(30);
+    edades.InsertarAlFinal(21);
+    edades.InsertarAlFinal(21411);
+    edades.InsertarAlFinal(24);
+    edades.InsertarAlFinal(22);
+    edades.InsertarAlFinal(33);
     int elemento;
     int opcion;
     do
@@ -237,7 +282,11 @@ int main()
         case 7:
             edades.Vaciar();
             break;
-
+        case 8:
+            cout << "Digite posición: " << endl;
+            cin >> elemento;
+            edades.EliminarElementoEnPosicion(elemento);
+            break;
         default:
             cout << "Opción no valida." << endl;
             break;
