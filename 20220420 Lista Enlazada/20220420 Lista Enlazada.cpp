@@ -76,10 +76,94 @@ public:
 		}
 		cout << "****************************" << endl << endl;
 	}
+	void ImprimirEnLinea()
+	{
+		Nodo* recorrido = inicio;
+		cout << "Lista enlazada****************************" << endl;
+		while (recorrido != NULL)
+		{
+			cout << recorrido->getDato() << "\t";
+			recorrido = recorrido->getEnlace();
+		}
+		cout << "****************************" << endl << endl;
+	}
 	//Implementar la busqueda de un elemento en la lista enlazada
-	//Si la encuentra tiene que imprimir la dirección de memoría donde esta este elemento.
+	//Si la encuentra tiene que imprimir la dirección de memoría
+	//donde esta este elemento.
+	void Buscar(int datoBuscado)
+	{
+		bool encontrado = false;
+		Nodo* recorrido = inicio;
+		while (recorrido != NULL)
+		{
+			if (recorrido->getDato() == datoBuscado)
+			{
+				cout << "Elemento encontrado en la dirección de memoría: " << recorrido << endl;
+				encontrado = true;
+				break;
+			}
+			else
+			{
+				recorrido = recorrido->getEnlace();
+			}
+		}
+		if (encontrado == false)
+		{
+			cout << "El elemento buscado no fue encontrado." << endl;
+		}
+	}
 	//------------------------------------
 	//Implementar la eliminación de un nodo final
+	void EliminarElementoFinal()
+	{
+		if (EstaVacia())
+		{
+			cout << "No hay elemento a eliminar" << endl;
+		}
+		else
+		{
+			if (inicio->getEnlace() == NULL)
+			{
+				inicio = NULL;
+			}
+			else
+			{
+				Nodo* recorrido = inicio;
+				while (recorrido->getEnlace() != NULL)
+				{
+					//cout<<recorrido->getDato()<<"\t";
+					if (recorrido->getEnlace()->getEnlace() != NULL)
+						recorrido = recorrido->getEnlace();
+					else
+						break;
+				}
+				cout << endl;
+				//recorrido->imprimir();
+				recorrido->setEnlace(NULL);
+				//recorrido->imprimir();
+			}
+
+		}
+
+	}
+	void EliminarElementoInicio()
+	{
+		if (EstaVacia())
+		{
+			cout << "No hay elemento a eliminar" << endl;
+		}
+		else
+		{
+			inicio = inicio->getEnlace();
+		}
+	}
+	bool EstaVacia()
+	{
+		if (inicio == NULL)
+			return true;
+		else
+			return false;
+	}
 	//Implementar la eliminación de un nodo inicio
 };
 
@@ -87,19 +171,99 @@ int main()
 {
 	Lista edades = Lista();
 	edades.Insertar(20);
-	edades.Imprimir();
 	edades.Insertar(30);
-	edades.Imprimir();
 	edades.Insertar(21);
-	edades.Imprimir();
 	edades.Insertar(21);
-	edades.Imprimir();
 	edades.Insertar(24);
-	edades.Imprimir();
 	edades.Insertar(22);
-	edades.Imprimir();
 	edades.Insertar(33);
-	edades.Imprimir();
+	edades.ImprimirEnLinea();
+
+	//edades.Buscar(15);
+
+	/*cout<<"EliminarElementoFinal"<<endl;
+	edades.EliminarElementoFinal();
+	edades.ImprimirEnLinea();
+	cout<<"EliminarElementoFinal"<<endl;
+	edades.EliminarElementoFinal();
+	edades.ImprimirEnLinea();
+	cout<<"EliminarElementoFinal"<<endl;
+	edades.EliminarElementoFinal();
+	edades.ImprimirEnLinea();
+	cout<<"EliminarElementoFinal"<<endl;
+	edades.EliminarElementoFinal();
+	edades.ImprimirEnLinea();
+	cout<<"EliminarElementoFinal"<<endl;
+	edades.EliminarElementoFinal();
+	edades.ImprimirEnLinea();
+	cout<<"EliminarElementoFinal"<<endl;
+	edades.EliminarElementoFinal();
+	edades.ImprimirEnLinea();
+	cout<<"EliminarElementoFinal"<<endl;
+	edades.EliminarElementoFinal();
+	edades.ImprimirEnLinea();
+	cout<<"EliminarElementoFinal"<<endl;
+	edades.EliminarElementoFinal();
+	edades.ImprimirEnLinea();
+	cout<<"EliminarElementoFinal"<<endl;
+	edades.EliminarElementoFinal();
+	edades.ImprimirEnLinea();
+	cout<<"EliminarElementoFinal"<<endl;
+	edades.EliminarElementoFinal();
+	edades.ImprimirEnLinea();
+	cout<<"EliminarElementoFinal"<<endl;
+	edades.EliminarElementoFinal();
+	edades.ImprimirEnLinea();
+	cout<<"EliminarElementoFinal"<<endl;
+	edades.EliminarElementoFinal();
+	edades.ImprimirEnLinea();*/
+
+	cout << "eliminación" << endl;
+	edades.EliminarElementoInicio();
+	edades.ImprimirEnLinea();
+	cout << "eliminación" << endl;
+	edades.EliminarElementoInicio();
+	edades.ImprimirEnLinea();
+	cout << "eliminación" << endl;
+	edades.EliminarElementoInicio();
+	edades.ImprimirEnLinea();
+	cout << "eliminación" << endl;
+	edades.EliminarElementoInicio();
+	edades.ImprimirEnLinea();
+	cout << "eliminación" << endl;
+	edades.EliminarElementoInicio();
+	edades.ImprimirEnLinea();
+	cout << "eliminación" << endl;
+	edades.EliminarElementoInicio();
+	edades.ImprimirEnLinea();
+	cout << "eliminación" << endl;
+	edades.EliminarElementoInicio();
+	edades.ImprimirEnLinea();
+	cout << "eliminación" << endl;
+	edades.EliminarElementoInicio();
+	edades.ImprimirEnLinea();
+	cout << "eliminación" << endl;
+	edades.EliminarElementoInicio();
+	edades.ImprimirEnLinea();
+	cout << "eliminación" << endl;
+	edades.EliminarElementoInicio();
+	edades.ImprimirEnLinea(); cout << "eliminación" << endl;
+	edades.EliminarElementoInicio();
+	edades.ImprimirEnLinea();
+	cout << "eliminación" << endl;
+	edades.EliminarElementoInicio();
+	edades.ImprimirEnLinea(); cout << "eliminación" << endl;
+	edades.EliminarElementoInicio();
+	edades.ImprimirEnLinea();
+	cout << "eliminación" << endl;
+	edades.EliminarElementoInicio();
+	edades.ImprimirEnLinea(); cout << "eliminación" << endl;
+	edades.EliminarElementoInicio();
+	edades.ImprimirEnLinea();
+	cout << "eliminación" << endl;
+	edades.EliminarElementoInicio();
+	edades.ImprimirEnLinea();
+
 	int n;
 	cin >> n;
 
