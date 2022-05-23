@@ -220,6 +220,40 @@ public:
             return false;
     }
     //Implementar la eliminación de un nodo inicio
+
+
+    void InsertarDesendentemente(int dato)
+    {
+        Nodo* temp = new Nodo(dato);
+        if (EstaVacia())//lista vacia
+        {
+            inicio = temp;
+        }
+        else
+        {
+            Nodo* recorrido = this->inicio;
+            if (recorrido->getDato() < dato)
+            {
+                temp->setEnlace(this->inicio);
+                this->inicio = temp;
+            }
+            else
+            {
+                while (recorrido->getEnlace() != NULL && recorrido->getEnlace()->getDato() > dato)
+                {
+                    recorrido = recorrido->getEnlace();
+                }
+                if (recorrido->getEnlace() == NULL)//insertarmos al final
+                    recorrido->setEnlace(temp);
+                else//inserta en el intermedio de dos nodos
+                {
+                    temp->setEnlace(recorrido->getEnlace());
+                    recorrido->setEnlace(temp);
+                }
+            }
+
+        }
+    }
 };
 
 void MostrarMenu()
@@ -232,18 +266,13 @@ void MostrarMenu()
     cout << "6.- Eliminar un elemento final" << endl;
     cout << "7.- Vaciar la lista" << endl;
     cout << "8.- Eliminar un elemento en la posición" << endl;
+    cout << "9.- Insertar elementos ordenadamente (desendente)" << endl;
     cout << "0.- Salir" << endl;
 }
 int main()
 {
     Lista edades = Lista();
-    edades.InsertarAlFinal(20);
-    edades.InsertarAlFinal(30);
-    edades.InsertarAlFinal(21);
-    edades.InsertarAlFinal(21411);
-    edades.InsertarAlFinal(24);
-    edades.InsertarAlFinal(22);
-    edades.InsertarAlFinal(33);
+
     int elemento;
     int opcion;
     do
@@ -287,138 +316,15 @@ int main()
             cin >> elemento;
             edades.EliminarElementoEnPosicion(elemento);
             break;
+        case 9:
+            cout << "Digite el elemento a insertar: " << endl;
+            cin >> elemento;
+            edades.InsertarDesendentemente(elemento);
+            break;
         default:
             cout << "Opción no valida." << endl;
             break;
         }
     } while (opcion != 0);
 
-    /*Lista edades = Lista();
-    edades.InsertarAlFinal(20);
-    edades.InsertarAlFinal(30);
-    edades.InsertarAlFinal(21);
-    edades.InsertarAlFinal(21);
-    edades.InsertarAlFinal(24);
-    edades.InsertarAlFinal(22);
-    edades.InsertarAlFinal(33);
-    edades.ImprimirEnLinea();*/
-
-    /*Lista edades = Lista();
-    edades.InsertarAlInicio(20);
-    edades.InsertarAlInicio(30);
-    edades.InsertarAlInicio(21);
-    edades.InsertarAlInicio(21);
-    edades.InsertarAlInicio(24);
-    edades.InsertarAlInicio(22);
-    edades.InsertarAlInicio(33);
-    edades.ImprimirEnLinea();*/
-
-    //edades.Buscar(15);
-
-    /*cout<<"EliminarElementoFinal"<<endl;
-    edades.EliminarElementoFinal();
-    edades.ImprimirEnLinea();
-    cout<<"EliminarElementoFinal"<<endl;
-    edades.EliminarElementoFinal();
-    edades.ImprimirEnLinea();
-    cout<<"EliminarElementoFinal"<<endl;
-    edades.EliminarElementoFinal();
-    edades.ImprimirEnLinea();
-    cout<<"EliminarElementoFinal"<<endl;
-    edades.EliminarElementoFinal();
-    edades.ImprimirEnLinea();
-    cout<<"EliminarElementoFinal"<<endl;
-    edades.EliminarElementoFinal();
-    edades.ImprimirEnLinea();
-    cout<<"EliminarElementoFinal"<<endl;
-    edades.EliminarElementoFinal();
-    edades.ImprimirEnLinea();
-    cout<<"EliminarElementoFinal"<<endl;
-    edades.EliminarElementoFinal();
-    edades.ImprimirEnLinea();
-    cout<<"EliminarElementoFinal"<<endl;
-    edades.EliminarElementoFinal();
-    edades.ImprimirEnLinea();
-    cout<<"EliminarElementoFinal"<<endl;
-    edades.EliminarElementoFinal();
-    edades.ImprimirEnLinea();
-    cout<<"EliminarElementoFinal"<<endl;
-    edades.EliminarElementoFinal();
-    edades.ImprimirEnLinea();
-    cout<<"EliminarElementoFinal"<<endl;
-    edades.EliminarElementoFinal();
-    edades.ImprimirEnLinea();
-    cout<<"EliminarElementoFinal"<<endl;
-    edades.EliminarElementoFinal();
-    edades.ImprimirEnLinea();*/
-
-    /*cout<<"eliminación"<<endl;
-    edades.EliminarElementoInicio();
-    edades.ImprimirEnLinea();
-    cout<<"eliminación"<<endl;
-    edades.EliminarElementoInicio();
-    edades.ImprimirEnLinea();
-    cout<<"eliminación"<<endl;
-    edades.EliminarElementoInicio();
-    edades.ImprimirEnLinea();
-    cout<<"eliminación"<<endl;
-    edades.EliminarElementoInicio();
-    edades.ImprimirEnLinea();
-    cout<<"eliminación"<<endl;
-    edades.EliminarElementoInicio();
-    edades.ImprimirEnLinea();
-    cout<<"eliminación"<<endl;
-    edades.EliminarElementoInicio();
-    edades.ImprimirEnLinea();
-    cout<<"eliminación"<<endl;
-    edades.EliminarElementoInicio();
-    edades.ImprimirEnLinea();
-    cout<<"eliminación"<<endl;
-    edades.EliminarElementoInicio();
-    edades.ImprimirEnLinea();
-    cout<<"eliminación"<<endl;
-    edades.EliminarElementoInicio();
-    edades.ImprimirEnLinea();
-    cout<<"eliminación"<<endl;
-    edades.EliminarElementoInicio();
-    edades.ImprimirEnLinea();cout<<"eliminación"<<endl;
-    edades.EliminarElementoInicio();
-    edades.ImprimirEnLinea();
-    cout<<"eliminación"<<endl;
-    edades.EliminarElementoInicio();
-    edades.ImprimirEnLinea();cout<<"eliminación"<<endl;
-    edades.EliminarElementoInicio();
-    edades.ImprimirEnLinea();
-    cout<<"eliminación"<<endl;
-    edades.EliminarElementoInicio();
-    edades.ImprimirEnLinea();cout<<"eliminación"<<endl;
-    edades.EliminarElementoInicio();
-    edades.ImprimirEnLinea();
-    cout<<"eliminación"<<endl;
-    edades.EliminarElementoInicio();
-    edades.ImprimirEnLinea();
-
-    int n;
-    cin>>n;*/
-
 }
-//int main()
-//{
-//	Nodo temp1 = Nodo(666);
-//	cout << "Nodo temp1 Dato: " << temp1.getDato() << endl;
-//	cout << temp1.getEnlace() << endl;
-//
-//	Nodo temp2 = Nodo(25555);
-//	cout << "Nodo temp2 Dato: " << temp2.getDato() << endl;
-//	cout << temp2.getEnlace() << endl;
-//
-//
-//	////enlace de nodos
-//	temp1.setEnlace(&temp2);
-//	cout << "Despues de enlazar" << endl;
-//	cout << "Nodo temp1 Dato: " << temp1.getDato() << endl;
-//	cout << temp1.getEnlace() << endl;
-//
-//	cout << "Nodo temp2 Dato: " << temp2.getDato() << endl;
-//	cout << temp2.getEnlace() << endl;
-//}
